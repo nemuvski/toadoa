@@ -1,0 +1,17 @@
+# IDE or Editor
+/.idea
+/.vscode
+
+# Dependencies
+/node_modules
+
+# Production
+/dist
+
+# Misc
+.DS_Store
+.env.development
+.env.production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
