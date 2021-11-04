@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { ApiError } from '@supabase/gotrue-js/dist/module/GoTrueApi'
 import { signInAction, signOutAction } from '~/stores/auth/action'
+import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
 export interface AuthState {
   session: Session | null
-  error?: ApiError | null
+  error?: SupabaseApiError | null
   isLoading: boolean
 }
 

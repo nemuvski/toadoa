@@ -1,25 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { ApiError } from '@supabase/gotrue-js/dist/module/GoTrueApi'
-import { supabase } from '~/libs/supabase'
+import { signIn, signOut } from '~/infrastructure/auth'
+import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
-export const signInAction = createAsyncThunk<Session | null, string, { rejectValue: ApiError }>(
+export const signInAction = createAsyncThunk<Session | null, string, { rejectValue: SupabaseApiError }>(
   'auth/signIn',
   async (email: string, { rejectWithValue }) => {
-    const { session, error } = await supabase.auth.signIn({ email })
-    if (error) {
-      return rejectWithValue(error)
+    try {
+      return await signIn(email)
+    } catch (error) {
+      return rejectWithValue(error as SupabaseApiError)
     }
-    return session
   }
 )
 
-export const signOutAction = createAsyncThunk<void, void, { rejectValue: ApiError }>(
+export const signOutAction = createAsyncThunk<void, void, { rejectValue: SupabaseApiError }>(
   'auth/signOut',
   async (_, { rejectWithValue }) => {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      return rejectWithValue(error)
+    try {
+      await signOut()
+    } catch (error) {
+      return rejectWithValue(error as SupabaseApiError)
     }
   }
 )

@@ -6,22 +6,25 @@ import { setAuthState } from '~/stores/auth/slice'
 
 const useAuthChange = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const session = supabase.auth.session()
 
   useEffect(() => {
-    const { data, error } = supabase.auth.onAuthStateChange((_, session) => {
+    if (session) {
       dispatch(setAuthState(session))
-    })
+    }
 
+    const { data: subscription, error } = supabase.auth.onAuthStateChange((_, sessionChange) => {
+      dispatch(setAuthState(sessionChange))
+    })
     if (error) {
       console.error(error)
     }
-
     return () => {
-      if (data) {
-        data.unsubscribe()
+      if (subscription) {
+        subscription.unsubscribe()
       }
     }
-  }, [dispatch])
+  }, [dispatch, session])
 }
 
 export default useAuthChange
