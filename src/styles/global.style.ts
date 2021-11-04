@@ -7,7 +7,7 @@ const variables = css`
     --color-scrollbar: rgba(180, 188, 196, 0.8);
     --color-shadow: rgb(184, 187, 188, 0.2);
     --color-black: rgb(12, 18, 20);
-    --color-white: rgb(251, 253, 255);
+    --color-white: rgb(252, 253, 254);
     --color-gray-main: rgba(239, 240, 243);
     --color-gray-dark: rgb(57, 62, 70);
     --color-primary-light: rgb(170, 216, 211);
