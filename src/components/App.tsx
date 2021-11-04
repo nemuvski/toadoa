@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import useAuthChange from '~/hooks/useAuthChange'
 import PrivateRoute from '~/components/PrivateRoute'
 import PublicRoute from '~/components/PublicRoute'
@@ -12,12 +12,26 @@ const App = () => {
   useAuthChange()
 
   return (
-    <Switch>
-      <PublicRoute exact path='/' component={FrontPage} />
-      <PrivateRoute exact path='/dashboard' component={DashboardPage} />
-      <PrivateRoute exact path='/sign-out' component={SignOutPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
+    <Routes>
+      <Route
+        path='/'
+        element={
+          <PublicRoute>
+            <FrontPage />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path='/dashboard'
+        element={
+          <PrivateRoute>
+            <DashboardPage />
+          </PrivateRoute>
+        }
+      />
+      <Route path='/sign-out' element={<SignOutPage />} />
+      <Route path='*' element={<NotFoundPage />} />
+    </Routes>
   )
 }
 

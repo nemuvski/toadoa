@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useAuth from '~/hooks/useAuth'
 
 const SignOutPage = () => {
-  const router = useHistory()
+  const navigate = useNavigate()
   const { signOut } = useAuth()
 
   useEffect(() => {
@@ -11,9 +11,9 @@ const SignOutPage = () => {
       await signOut()
     }
     process().finally(() => {
-      router.replace('/')
+      navigate('/', { replace: true })
     })
-  }, [router, signOut])
+  }, [navigate, signOut])
 
   return null
 }

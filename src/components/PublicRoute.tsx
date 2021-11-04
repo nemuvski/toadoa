@@ -1,18 +1,15 @@
 import React from 'react'
-import { Redirect, Route, RouteProps } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectAuthSession } from '~/stores/auth/selector'
 
-interface Props extends RouteProps {
+type Props = {
   redirectPath?: string
 }
 
-const PrivateRoute: React.FC<Props> = ({ redirectPath = '/dashboard', ...props }) => {
+const PublicRoute: React.FC<Props> = ({ redirectPath = '/dashboard', children }) => {
   const session = useSelector(selectAuthSession)
-  if (session) {
-    return <Redirect to={redirectPath} />
-  }
-  return <Route {...props} />
+  return session ? <Navigate replace to={redirectPath} /> : <>{children}</>
 }
 
-export default PrivateRoute
+export default PublicRoute
