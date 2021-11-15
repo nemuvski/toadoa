@@ -5,9 +5,9 @@ import {
   IoWarningOutline,
   IoAlertCircleOutline,
 } from 'react-icons/io5'
-import { MessageContent } from '~/models/Message'
+import { MessageContent } from '~/features/message/models/Message'
 import Maybe from '~/components/Maybe'
-import Styles from '~/styles/message.style'
+import Styles from '~/features/message/styles/message.style'
 
 type Props = {
   content?: MessageContent
