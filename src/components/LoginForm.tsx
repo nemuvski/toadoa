@@ -7,6 +7,7 @@ import useMessage from '~/hooks/useMessage'
 import { selectAuth } from '~/stores/auth/selector'
 import Message from '~/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
+import Either from '~/components/Either'
 import { Form, FormActions, FormTextInput } from '~/styles/styled/form.component'
 import { Button, ButtonIcon } from '~/styles/styled/button.component'
 
@@ -48,7 +49,8 @@ const LoginForm = () => {
 
   return (
     <Form>
-      {message && <Message content={message} />}
+      <Message content={message} />
+
       <FormTextInput
         type='email'
         tabIndex={0}
@@ -66,7 +68,9 @@ const LoginForm = () => {
           color='primary'
           tabIndex={1}
         >
-          <ButtonIcon>{isSubmitting ? <LoadingIcon /> : <BiPaperPlane />}</ButtonIcon>
+          <ButtonIcon>
+            <Either test={isSubmitting} match={<LoadingIcon />} not={<BiPaperPlane />} />
+          </ButtonIcon>
           Send Magic Link
         </Button>
       </FormActions>
