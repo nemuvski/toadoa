@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { Global } from '@emotion/react'
-import { store } from '~/stores/store'
+import { store } from '~/stores/Store'
 import App from '~/components/App'
-import Styles from '~/styles/global.style'
+import Styles from '~/styles/Global'
 
 ReactDOM.render(
   <React.StrictMode>

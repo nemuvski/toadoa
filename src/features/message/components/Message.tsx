@@ -7,7 +7,7 @@ import {
 } from 'react-icons/io5'
 import { MessageContent } from '~/features/message/models/Message'
 import Maybe from '~/components/Maybe'
-import Styles from '~/features/message/styles/message.style'
+import Styles from '~/features/message/styles/Message'
 
 type Props = {
   content?: MessageContent

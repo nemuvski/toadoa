@@ -1,4 +1,4 @@
-import { RootState } from '~/stores/store'
+import { RootState } from '~/stores/Store'
 
 export const selectAuth = (state: RootState) => state.auth
 

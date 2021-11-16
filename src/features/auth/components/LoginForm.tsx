@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 import { BiPaperPlane } from 'react-icons/bi'
 import useAuth from '~/features/auth/hooks/useAuth'
 import useMessage from '~/features/message/hooks/useMessage'
-import { selectAuth } from '~/features/auth/stores/auth/selector'
+import { selectAuth } from '~/features/auth/stores/Auth.selector'
 import Message from '~/features/message/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import Either from '~/components/Either'
-import { Form, FormActions, FormTextInput } from '~/styles/styled/form.component'
-import { Button, ButtonIcon } from '~/styles/styled/button.component'
+import { Form, FormActions, FormTextInput } from '~/styles/Form.styled'
+import { Button, ButtonIcon } from '~/styles/Button.styled'
 
 type FormFields = {
   email: string

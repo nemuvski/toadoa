@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { SITE_NAME } from '~/constants/page'
+import { SITE_NAME } from '~/constants/Page'
 
 const usePageTitle = (pageTitle?: string) => {
   useEffect(() => {

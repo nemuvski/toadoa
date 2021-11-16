@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '~/features/auth/hooks/useAuth'
 import LoadingIcon from '~/components/icons/LoadingIcon'
-import Styles from '~/styles/sign-out-page.style'
-import { CenteringFrameHeading } from '~/styles/styled/centering-frame.component'
-import { Paragraph } from '~/styles/styled/paragraph.component'
+import Styles from '~/styles/SignOutPage'
+import { CenteringFrameHeading } from '~/styles/CenteringFrame.styled'
+import { Paragraph } from '~/styles/Paragraph.styled'
 
 const SignOutPage = () => {
   const navigate = useNavigate()
