@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectAuthSession } from '~/stores/auth/selector'
+import { selectAuthSession } from '~/features/auth/stores/auth/selector'
 
 type Props = {
   redirectPath?: string

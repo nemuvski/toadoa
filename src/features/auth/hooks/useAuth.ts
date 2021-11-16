@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '~/stores/store'
-import { signInAction, signOutAction } from '~/stores/auth/action'
+import { signInAction, signOutAction } from '~/features/auth/stores/auth/action'
 
 const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>()

@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginForm from '~/components/LoginForm'
+import LoginForm from '~/features/auth/components/LoginForm'
 import { Card, CardHeader, CardContentSeparator, CardBody } from '~/styles/styled/card.component'
 import { CenteringLayout, CenteringLayoutHeading } from '~/styles/styled/centering-layout.component'
 import { Circle } from '~/styles/styled/circle.component'

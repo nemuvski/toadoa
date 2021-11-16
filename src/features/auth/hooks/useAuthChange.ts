@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { supabase } from '~/libs/supabase'
 import { AppDispatch } from '~/stores/store'
-import { setAuthState } from '~/stores/auth/slice'
+import { setAuthState } from '~/features/auth/stores/auth/slice'
 
 const useAuthChange = () => {
   const dispatch = useDispatch<AppDispatch>()
