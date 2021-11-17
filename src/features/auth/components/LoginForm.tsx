@@ -8,8 +8,8 @@ import { selectAuth } from '~/features/auth/stores/Auth.selector'
 import Message from '~/features/message/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import Either from '~/components/Either'
-import { Form, FormActions, FormTextInput } from '~/styles/Form.styled'
-import { Button, ButtonIcon } from '~/styles/Button.styled'
+import { Form, FormActions, FormTextInput } from '~/components/Form.styled'
+import { Button, ButtonIcon } from '~/components/Button.styled'
 
 type FormFields = {
   email: string

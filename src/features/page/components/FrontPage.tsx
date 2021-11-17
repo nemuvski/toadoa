@@ -1,8 +1,8 @@
 import React from 'react'
 import LoginForm from '~/features/auth/components/LoginForm'
-import { Card, CardHeader, CardContentSeparator, CardBody } from '~/styles/Card.styled'
-import { CenteringFrameHeading } from '~/styles/CenteringFrame.styled'
-import { Circle } from '~/styles/Circle.styled'
+import { Card, CardHeader, CardContentSeparator, CardBody } from '~/components/Card.styled'
+import { CenteringFrameHeading } from '~/components/CenteringFrame.styled'
+import { Circle } from '~/components/Circle.styled'
 
 const FrontPage = () => (
   <>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { CenteringFrame } from '~/styles/CenteringFrame.styled'
+import { CenteringFrame } from '~/components/CenteringFrame.styled'
 
 const SubLayout = () => (
   <CenteringFrame>
