@@ -1,11 +1,11 @@
 import React from 'react'
 import useAuthChange from '~/features/auth/hooks/useAuthChange'
-import Router from '~/features/router/components/Router'
+import AppRouter from '~/features/router/components/AppRouter'
 
 const App = () => {
   useAuthChange()
 
-  return <Router />
+  return <AppRouter />
 }
 
 export default App
