@@ -1,0 +1,10 @@
+const path = require('path')
+
+const ROOT_DIR = path.resolve(__dirname, 'sequelize')
+
+module.exports = {
+  config: path.join(ROOT_DIR, 'config', 'config.cjs'),
+  'models-path': path.join(ROOT_DIR, 'models'),
+  'seeders-path': path.join(ROOT_DIR, 'seeders'),
+  'migrations-path': path.join(ROOT_DIR, 'migrations'),
+}
