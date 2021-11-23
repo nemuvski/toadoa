@@ -1,9 +1,11 @@
 import React from 'react'
 import useAuthChange from '~/features/auth/hooks/useAuthChange'
+import useFetchAccount from '~/features/auth/hooks/useFetchAccount'
 import AppRouter from '~/features/page/components/AppRouter'
 
 const App = () => {
   useAuthChange()
+  useFetchAccount()
 
   return <AppRouter />
 }
