@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useRoutes } from 'react-router-dom'
+import { useRoutes, Navigate } from 'react-router-dom'
 import { selectAuthSession } from '~/features/auth/stores/Auth.selector'
 import { RouteObject } from 'react-router-dom'
 import MainLayout from '~/components/MainLayout'
@@ -54,6 +54,11 @@ const authenticationOnlyRoutes: Array<RouteObject> = [
     path: '/',
     element: <MainLayout />,
     children: [
+      {
+        index: true,
+        // ルートパスにアクセスされた時はダッシュボードページへリダイレクト
+        element: <Navigate replace to='/dashboard' />,
+      },
       {
         path: 'dashboard',
         element: <DashboardPage />,
