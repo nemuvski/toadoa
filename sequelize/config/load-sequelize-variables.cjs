@@ -1,3 +1,5 @@
+'use strict'
+
 const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
@@ -5,7 +7,7 @@ const dotenv = require('dotenv')
 // コマンド実行時にNODE_ENVを指定することで読み込むdotenvファイルを変える
 const nodeEnv = process.env.NODE_ENV || 'development'
 const envFilePath = path.resolve(__dirname, '../..', `.env.${nodeEnv}`)
-console.info(`Loaded dotenv file "${envFilePath}"`)
+console.info(`Loaded dotenv file "${envFilePath}".`)
 
 const parseOutput = dotenv.parse(fs.readFileSync(envFilePath))
 

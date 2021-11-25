@@ -1,3 +1,5 @@
+'use strict'
+
 const envConfig = require('./load-sequelize-variables.cjs')
 
 module.exports = {
