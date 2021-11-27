@@ -2,6 +2,7 @@
   "name": "toadoa",
   "version": "0.1.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "clean": "rimraf dist",
     "eslint:check": "eslint --ext .js,.jsx,.ts,.tsx .",
