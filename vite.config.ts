@@ -31,7 +31,12 @@ export default defineConfig(({ mode }) => {
       pure: esbuildPure,
     },
     plugins: [
-      react(),
+      react({
+        jsxImportSource: '@emotion/react',
+        babel: {
+          plugins: ['@emotion/babel-plugin'],
+        },
+      }),
       eslintPlugin({ cache: true, fix: false, throwOnWarning: true, throwOnError: true }),
       minifyHtml(),
       injectHtml({ injectData: { APP_VERSION: appVersion } }),
