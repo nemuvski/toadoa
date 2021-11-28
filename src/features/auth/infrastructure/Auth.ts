@@ -5,7 +5,7 @@ export const signIn = async (email: string) => {
   const { session, error } = await supabase.auth.signIn(
     { email },
     {
-      redirectTo: `${process.env.BASE_URL}/dashboard`,
+      redirectTo: `${import.meta.env.PUBLIC_BASE_URL}/dashboard`,
     }
   )
   if (error) {
