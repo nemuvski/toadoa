@@ -5,6 +5,7 @@ import { selectAuthSession } from '~/features/auth/stores/Auth.selector'
 import { RouteObject } from 'react-router-dom'
 import MainLayout from '~/components/MainLayout'
 import SubLayout from '~/components/SubLayout'
+import PageLoadingSkeleton from '~/features/routes/components/PageLoadingSkeleton'
 
 const FrontPage = lazy(() => import('~/features/routes/components/FrontPage'))
 const DashboardPage = lazy(() => import('~/features/routes/components/DashboardPage'))
@@ -73,7 +74,7 @@ const AppRouter = () => {
   const protectedRoutes = session ? authenticationOnlyRoutes : anonymousOnlyRoutes
   const element = useRoutes([...commonRoutes, ...protectedRoutes])
 
-  return <Suspense fallback={<div>Loading</div>}>{element}</Suspense>
+  return <Suspense fallback={<PageLoadingSkeleton />}>{element}</Suspense>
 }
 
 export default AppRouter
