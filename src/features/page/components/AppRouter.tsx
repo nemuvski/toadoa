@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { useSelector } from 'react-redux'
 import { useRoutes, Navigate } from 'react-router-dom'
 import { selectAuthSession } from '~/features/auth/stores/Auth.selector'
 import { RouteObject } from 'react-router-dom'
 import MainLayout from '~/components/MainLayout'
 import SubLayout from '~/components/SubLayout'
-import FrontPage from '~/features/page/components/FrontPage'
-import DashboardPage from '~/features/page/components/DashboardPage'
-import SignOutPage from '~/features/page/components/SignOutPage'
-import NotFoundPage from '~/features/page/components/NotFoundPage'
+
+const FrontPage = lazy(() => import('~/features/page/components/FrontPage'))
+const DashboardPage = lazy(() => import('~/features/page/components/DashboardPage'))
+const SignOutPage = lazy(() => import('~/features/page/components/SignOutPage'))
+const NotFoundPage = lazy(() => import('~/features/page/components/NotFoundPage'))
 
 /**
  * 匿名ユーザー、認証済みユーザーの両方がアクセス可能なルート群
@@ -72,7 +73,7 @@ const AppRouter = () => {
   const protectedRoutes = session ? authenticationOnlyRoutes : anonymousOnlyRoutes
   const element = useRoutes([...commonRoutes, ...protectedRoutes])
 
-  return <>{element}</>
+  return <Suspense fallback={<div>Loading</div>}>{element}</Suspense>
 }
 
 export default AppRouter
