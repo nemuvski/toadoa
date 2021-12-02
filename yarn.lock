@@ -504,10 +504,10 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@supabase/gotrue-js@^1.21.0":
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.21.0.tgz#ebe6c4f2f8f001a3a0a4a5cc0776ed90b99289f0"
-  integrity sha512-ZQuCe+HO1vXdjH1MqJsK0lOvZPpPT5mGGLQm0/3RFqyhEgdTHm2GsefruRc+3/08KHnaYXXDP/9AWM0eFb/AjQ==
+"@supabase/gotrue-js@^1.21.7":
+  version "1.21.7"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.21.7.tgz#ec3fdf2199a28fb65c1ae94a3c10032536c0aa4e"
+  integrity sha512-YnL4cO3Q+ugatWEtgCEnLt+Wwi0VpOVTPSSjSSUho2x3cH7+juRBTrVbYky/W6YVgAw/ZJrVUFPh/NcUCUhdmw==
   dependencies:
     cross-fetch "^3.0.6"
 
@@ -518,10 +518,10 @@
   dependencies:
     cross-fetch "^3.0.6"
 
-"@supabase/realtime-js@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.2.1.tgz#44ec8d68ea3838dc172eeafef9b6f71db92bd828"
-  integrity sha512-nhwSvizonT8hiMoQHOqs+2MZNV8qkhKn552g7NIJktVmqpz//O1dGjdcXyjhbAurW18z0Y7Qa9G7UXfEYJKRPQ==
+"@supabase/realtime-js@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.3.2.tgz#c16914527529efcb47b3b8d6c6e39d3038b13b1e"
+  integrity sha512-6U/2Ct0J8z9PIea5gOuTeGjMCwhZWL34hznwUaTjgDOkqKVheTKtvyrbTLJi04yXP4SLIVxju6egjOlA5cI0HQ==
   dependencies:
     "@types/websocket" "^1.0.3"
     websocket "^1.0.34"
@@ -533,14 +533,14 @@
   dependencies:
     cross-fetch "^3.1.0"
 
-"@supabase/supabase-js@^1.28.2":
-  version "1.28.2"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.28.2.tgz#633603a66cf11a5e510cf646776298d1865ddc9c"
-  integrity sha512-QJmnBV6iNcWJ2UI56KjUEXlZrcKlNXSaJBgXdq6Cl+CcyVSBv9Y+UbgqVWUMsuzu2HDD73aiYvO8FU1QLsmqZg==
+"@supabase/supabase-js@^1.28.4":
+  version "1.28.4"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.28.4.tgz#db27290c9b6adf829b92cb36548d14214e3671ef"
+  integrity sha512-Thp9NZTvNx/jLE1Excuqlj0vUZNJDULWO9Uj0EnHMzsQyCAydhXvpNPZlCtdRyS1xSn4/vYTWBefqNKesuXUbw==
   dependencies:
-    "@supabase/gotrue-js" "^1.21.0"
+    "@supabase/gotrue-js" "^1.21.7"
     "@supabase/postgrest-js" "^0.35.0"
-    "@supabase/realtime-js" "^1.2.1"
+    "@supabase/realtime-js" "^1.3.2"
     "@supabase/storage-js" "^1.5.0"
 
 "@types/hoist-non-react-statics@^3.3.0":
