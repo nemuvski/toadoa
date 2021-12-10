@@ -8,7 +8,7 @@ export const store = configureStore({
     [accountSlice.name]: accountSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: !import.meta.env.PROD,
 })
 
 export type AppDispatch = typeof store.dispatch
