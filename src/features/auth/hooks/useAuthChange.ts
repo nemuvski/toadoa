@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { supabase } from '~/libs/Supabase'
-import { AppDispatch } from '~/stores/Store'
-import { setAuthState } from '~/features/auth/stores/Auth.slice'
+import { supabase } from '~/libs/supabase'
+import { AppDispatch } from '~/stores/store'
+import { setAuthState } from '~/features/auth/stores/auth.slice'
 
-const useAuthChange = () => {
+export default function useAuthChange() {
   const dispatch = useDispatch<AppDispatch>()
   const session = supabase.auth.session()
 
@@ -26,5 +26,3 @@ const useAuthChange = () => {
     }
   }, [dispatch, session])
 }
-
-export default useAuthChange

@@ -1,5 +1,5 @@
 import { Dayjs } from 'dayjs'
-import dayjs from '~/libs/Dayjs'
+import dayjs from '~/libs/dayjs'
 
 /**
  * アプリケーション上で扱うエンティティベース

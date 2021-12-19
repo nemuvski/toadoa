@@ -1,4 +1,4 @@
-import { supabase } from '~/libs/Supabase'
+import { supabase } from '~/libs/supabase'
 import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
 export const signIn = async (email: string) => {

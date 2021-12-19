@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { signInAction, signOutAction } from '~/features/auth/stores/Auth.action'
+import { signInAction, signOutAction } from '~/features/auth/stores/auth.action'
 import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
 export interface AuthState {

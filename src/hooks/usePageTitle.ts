@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { SITE_NAME } from '~/features/routes/constants/Page'
+import { SITE_NAME } from '~/constants/page'
 
-const usePageTitle = (pageTitle?: string) => {
+export default function usePageTitle(pageTitle?: string) {
   useEffect(() => {
     if (pageTitle) {
       document.title = `${pageTitle} — ${SITE_NAME}`
@@ -10,5 +10,3 @@ const usePageTitle = (pageTitle?: string) => {
     }
   }, [pageTitle])
 }
-
-export default usePageTitle

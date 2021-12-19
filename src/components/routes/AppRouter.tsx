@@ -1,16 +1,16 @@
 import React, { Suspense, lazy } from 'react'
 import { useSelector } from 'react-redux'
 import { useRoutes, Navigate } from 'react-router-dom'
-import { selectAuthSession } from '~/features/auth/stores/Auth.selector'
+import { selectAuthSession } from '~/features/auth/stores/auth.selector'
 import { RouteObject } from 'react-router-dom'
-import MainLayout from '~/components/MainLayout'
-import SubLayout from '~/components/SubLayout'
-import PageLoadingSkeleton from '~/features/routes/components/PageLoadingSkeleton'
+import MainLayout from '~/components/layouts/MainLayout'
+import SubLayout from '~/components/layouts/SubLayout'
+import PageLoadingSkeleton from '~/components/routes/PageLoadingSkeleton'
 
-const FrontPage = lazy(() => import('~/features/routes/components/FrontPage'))
-const DashboardPage = lazy(() => import('~/features/routes/components/DashboardPage'))
-const SignOutPage = lazy(() => import('~/features/routes/components/SignOutPage'))
-const NotFoundPage = lazy(() => import('~/features/routes/components/NotFoundPage'))
+const FrontPage = lazy(() => import('~/pages/FrontPage'))
+const DashboardPage = lazy(() => import('~/pages/DashboardPage'))
+const SignOutPage = lazy(() => import('~/pages/SignOutPage'))
+const NotFoundPage = lazy(() => import('~/pages/NotFoundPage'))
 
 /**
  * 匿名ユーザー、認証済みユーザーの両方がアクセス可能なルート群

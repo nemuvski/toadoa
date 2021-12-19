@@ -1,7 +1,7 @@
 import React from 'react'
 import useAuthChange from '~/features/auth/hooks/useAuthChange'
 import useFetchAccount from '~/features/auth/hooks/useFetchAccount'
-import AppRouter from '~/features/routes/components/AppRouter'
+import AppRouter from '~/components/routes/AppRouter'
 
 const App = () => {
   useAuthChange()

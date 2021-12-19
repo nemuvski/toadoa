@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
-import { buildMessageContent, MessageContent, MessageLevel } from '~/features/message/models/Message'
+import { buildMessageContent, MessageContent, MessageLevel } from '~/features/message/models/message'
 
-const useMessage = () => {
+export default function useMessage() {
   const [messageContent, setMessageContent] = useState<MessageContent | undefined>()
   const clearMessage = useCallback(() => {
     setMessageContent(undefined)
@@ -15,5 +15,3 @@ const useMessage = () => {
     addMessage,
   }
 }
-
-export default useMessage

@@ -1,5 +1,5 @@
 import React from 'react'
-import usePageTitle from '~/features/routes/hooks/usePageTitle'
+import usePageTitle from '~/hooks/usePageTitle'
 
 const NotFoundPage = () => {
   usePageTitle('Not found')

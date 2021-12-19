@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { MessageLevel } from '~/features/message/models/Message'
+import { MessageLevel } from '~/features/message/models/message'
 
 const root = css`
   display: flex;

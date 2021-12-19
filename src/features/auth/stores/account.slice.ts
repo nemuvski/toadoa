@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Account } from '~/features/auth/models/Account'
+import { Account } from '~/features/auth/models/account'
 import RestError from '~/exceptions/RestError'
-import { createAccountAction, getAccountAction } from '~/features/auth/stores/Account.action'
+import { createAccountAction, getAccountAction } from '~/features/auth/stores/account.action'
 
 export interface AccountState {
   account: Account | null

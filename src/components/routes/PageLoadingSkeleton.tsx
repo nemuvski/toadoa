@@ -1,7 +1,7 @@
 import React from 'react'
-import { CenteringFrame, CenteringFrameHeading } from '~/components/CenteringFrame.styled'
-import { IconWrapper } from '~/components/IconWrapper.styled'
-import { Paragraph } from '~/components/Paragraph.styled'
+import { CenteringFrame, CenteringFrameHeading } from '~/components/styled/CenteringFrame'
+import { IconWrapper } from '~/components/styled/IconWrapper'
+import { Paragraph } from '~/components/styled/Paragraph'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 
 const PageLoadingSkeleton = () => (

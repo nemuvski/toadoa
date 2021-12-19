@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch } from '~/stores/Store'
-import { selectUserUID } from '~/features/auth/stores/Auth.selector'
+import { AppDispatch } from '~/stores/store'
+import { selectUserUID } from '~/features/auth/stores/auth.selector'
 import { useEffect } from 'react'
-import { selectAccount } from '~/features/auth/stores/Account.selector'
-import { createAccountAction, getAccountAction } from '~/features/auth/stores/Account.action'
+import { selectAccount } from '~/features/auth/stores/account.selector'
+import { createAccountAction, getAccountAction } from '~/features/auth/stores/account.action'
 import { useNavigate } from 'react-router-dom'
-import { AccountStatus } from '~/features/auth/models/Account'
+import { AccountStatus } from '~/features/auth/models/account'
 
-const useFetchAccount = () => {
+export default function useFetchAccount() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
@@ -39,5 +39,3 @@ const useFetchAccount = () => {
     }
   }, [error])
 }
-
-export default useFetchAccount

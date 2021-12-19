@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { bp, Breakpoint } from '~/styles/Breakpoints.mixin'
+import { bp, Breakpoint } from '~/styles/breakpoints.mixin'
 
 const variables = css`
   :root {

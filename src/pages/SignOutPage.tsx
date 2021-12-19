@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '~/stores/Store'
-import { clearAccountState } from '~/features/auth/stores/Account.slice'
+import { AppDispatch } from '~/stores/store'
+import { clearAccountState } from '~/features/auth/stores/account.slice'
 import useAuth from '~/features/auth/hooks/useAuth'
 import LoadingIcon from '~/components/icons/LoadingIcon'
-import { CenteringFrameHeading } from '~/components/CenteringFrame.styled'
-import { Paragraph } from '~/components/Paragraph.styled'
-import { Card, CardBody } from '~/components/Card.styled'
-import { IconWrapper } from '~/components/IconWrapper.styled'
+import { CenteringFrameHeading } from '~/components/styled/CenteringFrame'
+import { Paragraph } from '~/components/styled/Paragraph'
+import { Card, CardBody } from '~/components/styled/Card'
+import { IconWrapper } from '~/components/styled/IconWrapper'
 
 const SignOutPage = () => {
   const dispatch = useDispatch<AppDispatch>()

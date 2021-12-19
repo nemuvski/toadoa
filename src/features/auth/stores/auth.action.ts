@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { signIn, signOut } from '~/features/auth/infrastructure/Auth'
+import { signIn, signOut } from '~/features/auth/infrastructure/auth'
 import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
 export const signInAction = createAsyncThunk<Session | null, string, { rejectValue: SupabaseApiError }>(

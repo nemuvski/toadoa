@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Account } from '~/features/auth/models/Account'
+import { Account } from '~/features/auth/models/account'
 import RestError from '~/exceptions/RestError'
-import { createAccount, getAccount } from '~/features/auth/infrastructure/Account'
+import { createAccount, getAccount } from '~/features/auth/infrastructure/account'
 
 export const getAccountAction = createAsyncThunk<Account | null, string, { rejectValue: RestError }>(
   'account/getAccount',

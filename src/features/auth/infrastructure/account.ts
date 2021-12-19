@@ -1,7 +1,7 @@
-import { supabase } from '~/libs/Supabase'
-import { AccountStatus, buildAccount, DatabaseAccount } from '~/features/auth/models/Account'
+import { supabase } from '~/libs/supabase'
+import { AccountStatus, buildAccount, DatabaseAccount } from '~/features/auth/models/account'
 import RestError from '~/exceptions/RestError'
-import dayjs from '~/libs/Dayjs'
+import dayjs from '~/libs/dayjs'
 
 /**
  * Accountを取得

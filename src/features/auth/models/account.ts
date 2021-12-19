@@ -1,4 +1,4 @@
-import { buildEntityBase, EntityBase, DatabaseEntityBase } from '~/models/EntityBase'
+import { buildEntityBase, EntityBase, DatabaseEntityBase } from '~/models/entity-base'
 
 /**
  * Accountエンティティ
