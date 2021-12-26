@@ -28,7 +28,9 @@ export type AccountStatusType = typeof AccountStatus[keyof typeof AccountStatus]
  *
  * @param response
  */
-export const buildAccount = (response: DatabaseAccount): Account => ({
-  ...buildEntityBase(response),
-  status: response.status,
-})
+export function buildAccount(response: DatabaseAccount): Account {
+  return {
+    ...buildEntityBase(response),
+    status: response.status,
+  }
+}

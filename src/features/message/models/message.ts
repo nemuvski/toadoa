@@ -5,7 +5,9 @@ export interface MessageContent {
   content: string
 }
 
-export const buildMessageContent = (level: MessageLevel, content: string) => ({
-  level,
-  content,
-})
+export function buildMessageContent(level: MessageLevel, content: string) {
+  return {
+    level,
+    content,
+  }
+}

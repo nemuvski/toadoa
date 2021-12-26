@@ -1,7 +1,12 @@
 import { supabase } from '~/libs/supabase'
 import SupabaseApiError from '~/exceptions/SupabaseApiError'
 
-export const signIn = async (email: string) => {
+/**
+ * Supabaseのサインイン処理
+ *
+ * @param email Eメールアドレス
+ */
+export async function signIn(email: string) {
   const { session, error } = await supabase.auth.signIn(
     { email },
     {
@@ -14,7 +19,10 @@ export const signIn = async (email: string) => {
   return session
 }
 
-export const signOut = async () => {
+/**
+ * Supabaseのサインアウト処理
+ */
+export async function signOut() {
   const { error } = await supabase.auth.signOut()
   if (error) {
     throw new SupabaseApiError(error)

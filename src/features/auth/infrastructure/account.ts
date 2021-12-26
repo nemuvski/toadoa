@@ -8,7 +8,7 @@ import dayjs from '~/libs/dayjs'
  *
  * @param id 取得するUserUID
  */
-export const getAccount = async (id: Alias.UserUID) => {
+export async function getAccount(id: Alias.UserUID) {
   const { data, error } = await supabase.from<DatabaseAccount>('account').select().filter('id', 'eq', id)
 
   if (error) {
@@ -27,7 +27,7 @@ export const getAccount = async (id: Alias.UserUID) => {
  *
  * @param id 作成するUserUID
  */
-export const createAccount = async (id: Alias.UserUID) => {
+export async function createAccount(id: Alias.UserUID) {
   const currentDateString = dayjs().utc().format()
   const { data, error } = await supabase
     .from<DatabaseAccount>('account')
