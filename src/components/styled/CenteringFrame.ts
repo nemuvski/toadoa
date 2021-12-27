@@ -5,8 +5,6 @@ export const CenteringFrame = styled.div(
   css`
     width: 100%;
     max-width: calc(420px + 2rem);
-    height: auto;
-    max-height: 100%;
     margin: 5rem auto;
     padding: 0 1rem;
   `

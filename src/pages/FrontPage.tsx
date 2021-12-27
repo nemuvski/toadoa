@@ -7,7 +7,7 @@ import { Circle } from '~/components/styled/Circle'
 const FrontPage = () => (
   <>
     <CenteringFrameHeading>
-      <Circle>🐸</Circle>
+      <Circle size='large'>🐸</Circle>
     </CenteringFrameHeading>
     <Card>
       <CardHeader>
