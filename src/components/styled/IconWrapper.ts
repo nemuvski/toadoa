@@ -8,6 +8,12 @@ type IconWrapperProps = {
 export const IconWrapper = styled.i<IconWrapperProps>(
   css`
     display: inline-block;
+
+    svg {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
   `,
   ({ size = 'medium' }) => {
     let width = '1.5rem'

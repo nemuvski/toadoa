@@ -107,12 +107,6 @@ const baseStyles = css`
     border: 0;
     background-color: transparent;
   }
-
-  svg {
-    width: 100%;
-    height: auto;
-    vertical-align: middle;
-  }
 `
 
 export default css(variables, baseStyles)

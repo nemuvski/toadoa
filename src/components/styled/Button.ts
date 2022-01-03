@@ -38,6 +38,12 @@ export const ButtonIcon = styled.i(
   css`
     width: 1.2rem;
     font-style: normal;
+
+    svg {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
   `
 )
 ButtonIcon.defaultProps = {
