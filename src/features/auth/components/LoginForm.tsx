@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
 import { BiPaperPlane } from 'react-icons/bi'
-import useAuth from '~/features/auth/hooks/useAuth'
+import { useSignIn } from '~/features/auth/hooks/auth'
 import useMessage from '~/features/message/hooks/useMessage'
-import { selectAuth } from '~/features/auth/stores/auth.selector'
 import Message from '~/features/message/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import Either from '~/components/Either'
@@ -16,9 +14,8 @@ type FormFields = {
 }
 
 const LoginForm = () => {
-  const { signIn } = useAuth()
-  const { message, addMessage, clearMessage } = useMessage()
-  const { error } = useSelector(selectAuth)
+  const signInMutation = useSignIn()
+  const { message, addMessage } = useMessage()
   const {
     register,
     handleSubmit,
@@ -33,19 +30,11 @@ const LoginForm = () => {
 
   const handleButtonClick = useCallback(
     async (formFields: FormFields) => {
-      await signIn(formFields.email)
+      await signInMutation.mutateAsync(formFields.email)
       addMessage('success', `Your magic link has been sent to ${formFields.email}`)
     },
-    [signIn, addMessage]
+    [signInMutation, addMessage]
   )
-
-  useEffect(() => {
-    if (error) {
-      addMessage('error', error.message)
-    } else {
-      clearMessage()
-    }
-  }, [addMessage, clearMessage, error])
 
   return (
     <Form>

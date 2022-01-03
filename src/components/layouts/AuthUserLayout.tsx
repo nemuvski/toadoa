@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { Button, ButtonIcon } from '~/components/styled/Button'
 import { Circle } from '~/components/styled/Circle'
+import { useCheckAccount } from '~/features/auth/hooks/account'
 
 const Header = styled.header(
   css`
@@ -39,8 +40,10 @@ const Main = styled.main(
   `
 )
 
-const MainLayout = () => {
+const AuthUserLayout = () => {
   const navigate = useNavigate()
+
+  useCheckAccount()
 
   return (
     <>
@@ -62,4 +65,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default AuthUserLayout

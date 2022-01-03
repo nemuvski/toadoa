@@ -4,7 +4,7 @@ import { IconWrapper } from '~/components/styled/IconWrapper'
 import { Paragraph } from '~/components/styled/Paragraph'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 
-const PageLoadingSkeleton = () => (
+const PageSkeleton = () => (
   <CenteringFrame>
     <CenteringFrameHeading>Loading</CenteringFrameHeading>
     <Paragraph alignment='center'>
@@ -15,4 +15,4 @@ const PageLoadingSkeleton = () => (
   </CenteringFrame>
 )
 
-export default PageLoadingSkeleton
+export default PageSkeleton

@@ -1,13 +1,23 @@
-import React from 'react'
-import useAuthChange from '~/features/auth/hooks/useAuthChange'
-import useFetchAccount from '~/features/auth/hooks/useFetchAccount'
-import AppRouter from '~/components/routes/AppRouter'
+import React, { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import { QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { queryClient } from '~/libs/react-query'
+import AppRouter from '~/components/AppRouter'
+import PageSkeleton from '~/components/PageSkeleton'
+import PageError from '~/components/PageError'
 
 const App = () => {
-  useAuthChange()
-  useFetchAccount()
-
-  return <AppRouter />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary fallback={<PageError />}>
+        <Suspense fallback={<PageSkeleton />}>
+          <AppRouter />
+        </Suspense>
+      </ErrorBoundary>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
 }
 
 export default App

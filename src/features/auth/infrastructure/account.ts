@@ -6,10 +6,10 @@ import dayjs from '~/libs/dayjs'
 /**
  * Accountを取得
  *
- * @param id 取得するUserUID
+ * @param userUID 取得するUserUID
  */
-export async function getAccount(id: Alias.UserUID) {
-  const { data, error } = await supabase.from<DatabaseAccount>('account').select().filter('id', 'eq', id)
+export async function getAccount(userUID: Alias.UserUID) {
+  const { data, error } = await supabase.from<DatabaseAccount>('account').select().eq('id', userUID)
 
   if (error) {
     throw new RestError(error)
@@ -25,19 +25,21 @@ export async function getAccount(id: Alias.UserUID) {
 /**
  * Accountを作成
  *
- * @param id 作成するUserUID
+ * @param userUID 作成するUserUID
  */
-export async function createAccount(id: Alias.UserUID) {
+export async function createAccount(userUID: Alias.UserUID) {
   const currentDateString = dayjs().utc().format()
   const { data, error } = await supabase
     .from<DatabaseAccount>('account')
-    .insert([{ id, status: AccountStatus.Active, createdAt: currentDateString, updatedAt: currentDateString }])
+    .insert([{ id: userUID, status: AccountStatus.Active, createdAt: currentDateString, updatedAt: currentDateString }])
+    .limit(1)
+    .single()
 
   if (error) {
     throw new RestError(error)
   }
-  if (!data || !data.length) {
+  if (!data) {
     return null
   }
-  return buildAccount(data[0])
+  return buildAccount(data)
 }
