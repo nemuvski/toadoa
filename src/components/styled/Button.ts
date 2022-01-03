@@ -36,6 +36,7 @@ Button.defaultProps = {
 
 export const ButtonIcon = styled.i(
   css`
+    display: inline-block;
     width: 1.2rem;
     font-style: normal;
 

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Button } from '~/components/styled/Button'
 import { TaskStatus, TaskStatusType } from '~/features/task/models/task'
+import TaskCreateForm from '~/features/task/components/TaskCreateForm'
+import { Button } from '~/components/styled/Button'
+import { Paragraph } from '~/components/styled/Paragraph'
 
 const StatusSelector = styled.div(
   css`
@@ -47,6 +49,10 @@ const TaskDashboard = () => {
           Done
         </Button>
       </StatusSelector>
+
+      <TaskCreateForm />
+
+      <Paragraph alignment='center'>No data</Paragraph>
     </>
   )
 }
