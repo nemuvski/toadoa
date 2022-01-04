@@ -32,6 +32,12 @@ const IconWrapper = styled.div<{ level: MessageLevel }>(
     flex: 0 0 1.4rem;
     height: 1.4rem;
     margin-right: 0.75rem;
+
+    > svg {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
   `,
   ({ level }) => css`
     color: ${`var(--color-${level}-main)`};
