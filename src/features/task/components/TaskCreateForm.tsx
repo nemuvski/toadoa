@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { AiOutlinePlus } from 'react-icons/ai'
+import TaskForm from '~/features/task/components/TaskForm'
 import Either from '~/components/Either'
 import { ButtonIcon } from '~/components/styled/Button'
-import { Card } from '~/components/styled/Card'
+import { Card, CardBody } from '~/components/styled/Card'
 
 const Root = styled.div(
   css`
@@ -27,7 +28,7 @@ const CreateButton = styled.button(
 const CancelButton = styled.button(
   css`
     display: inline-block;
-    padding: 0.5rem;
+    padding: 0.1rem;
     color: var(--color-primary-main);
 
     &:hover {
@@ -45,7 +46,10 @@ const TaskCreateForm = () => {
         test={formMode}
         match={
           <Card>
-            <CancelButton onClick={() => setFormMode(false)}>Cancel</CancelButton>
+            <CardBody>
+              <CancelButton onClick={() => setFormMode(false)}>Cancel</CancelButton>
+              <TaskForm actionAfterSubmit={() => setFormMode(false)} />
+            </CardBody>
           </Card>
         }
         not={

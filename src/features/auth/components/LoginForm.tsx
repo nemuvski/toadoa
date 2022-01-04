@@ -1,17 +1,13 @@
-import React, { useCallback } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
 import { BiPaperPlane } from 'react-icons/bi'
 import { useSignIn } from '~/features/auth/hooks/auth'
+import { useLoginForm } from '~/features/auth/hooks/form'
 import useMessage from '~/features/message/hooks/useMessage'
 import Message from '~/features/message/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import Either from '~/components/Either'
 import { Form, FormActions, FormTextInput } from '~/components/styled/Form'
 import { Button, ButtonIcon } from '~/components/styled/Button'
-
-type FormFields = {
-  email: string
-}
 
 const LoginForm = () => {
   const signInMutation = useSignIn()
@@ -20,21 +16,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { isSubmitting, isValid },
-  } = useForm<FormFields>({
-    mode: 'onChange',
-    reValidateMode: 'onChange',
-    defaultValues: {
-      email: '',
-    },
-  })
-
-  const handleButtonClick = useCallback(
-    async (formFields: FormFields) => {
-      await signInMutation.mutateAsync(formFields.email)
-      addMessage('success', `Your magic link has been sent to ${formFields.email}`)
-    },
-    [signInMutation, addMessage]
-  )
+  } = useLoginForm()
 
   return (
     <Form>
@@ -53,7 +35,11 @@ const LoginForm = () => {
       <FormActions>
         <Button
           disabled={isSubmitting || !isValid}
-          onClick={handleSubmit(handleButtonClick)}
+          onClick={handleSubmit(async (formFields) => {
+            // 押下時にマジックリンクのメールを送信する
+            await signInMutation.mutateAsync(formFields.email)
+            addMessage('success', `Your magic link has been sent to ${formFields.email}`)
+          })}
           color='primary'
           tabIndex={1}
         >
