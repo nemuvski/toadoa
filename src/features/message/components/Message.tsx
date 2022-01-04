@@ -1,13 +1,53 @@
 import React from 'react'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import {
   IoCheckmarkCircleOutline,
   IoInformationCircleOutline,
   IoWarningOutline,
   IoAlertCircleOutline,
 } from 'react-icons/io5'
-import { MessageContent } from '~/features/message/models/message'
+import { MessageContent, MessageLevel } from '~/features/message/models/message'
 import Maybe from '~/components/Maybe'
-import Styles from '~/features/message/styles/message'
+
+const Root = styled.div<{ level: MessageLevel }>(
+  css`
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--size-border-radius);
+    line-height: 1.5;
+  `,
+  ({ level }) => css`
+    background-color: ${`var(--color-${level}-light)`};
+  `
+)
+
+const IconWrapper = styled.div<{ level: MessageLevel }>(
+  css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 1.4rem;
+    height: 1.4rem;
+    margin-right: 0.75rem;
+  `,
+  ({ level }) => css`
+    color: ${`var(--color-${level}-main)`};
+  `
+)
+
+const Content = styled.p<{ level: MessageLevel }>(
+  css`
+    flex: 1 1 auto;
+    word-break: break-all;
+    font-size: 0.9rem;
+  `,
+  ({ level }) => css`
+    color: ${`var(--color-${level}-dark)`};
+  `
+)
 
 type Props = {
   content?: MessageContent
@@ -17,8 +57,8 @@ const Message: React.FC<Props> = ({ content }) => {
   if (!content) return null
 
   return (
-    <div css={[Styles.root, Styles.rootVariant(content.level)]}>
-      <div css={[Styles.icon, Styles.iconVariant(content.level)]}>
+    <Root level={content.level}>
+      <IconWrapper level={content.level}>
         <Maybe test={content.level === 'success'}>
           <IoCheckmarkCircleOutline />
         </Maybe>
@@ -31,9 +71,9 @@ const Message: React.FC<Props> = ({ content }) => {
         <Maybe test={content.level === 'error'}>
           <IoAlertCircleOutline />
         </Maybe>
-      </div>
-      <p css={[Styles.content, Styles.contentVariant(content.level)]}>{content.content}</p>
-    </div>
+      </IconWrapper>
+      <Content level={content.level}>{content.content}</Content>
+    </Root>
   )
 }
 
