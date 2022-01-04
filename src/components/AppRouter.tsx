@@ -1,11 +1,9 @@
-import React, { Suspense, lazy } from 'react'
-import { useSelector } from 'react-redux'
+import React, { lazy } from 'react'
 import { useRoutes, Navigate } from 'react-router-dom'
-import { selectAuthSession } from '~/features/auth/stores/auth.selector'
 import { RouteObject } from 'react-router-dom'
-import MainLayout from '~/components/layouts/MainLayout'
-import SubLayout from '~/components/layouts/SubLayout'
-import PageLoadingSkeleton from '~/components/routes/PageLoadingSkeleton'
+import AuthUserLayout from '~/components/layouts/AuthUserLayout'
+import Layout from '~/components/layouts/Layout'
+import { useAuthSessionSubscription } from '~/features/auth/hooks/auth'
 
 const FrontPage = lazy(() => import('~/pages/FrontPage'))
 const DashboardPage = lazy(() => import('~/pages/DashboardPage'))
@@ -18,7 +16,7 @@ const NotFoundPage = lazy(() => import('~/pages/NotFoundPage'))
 const commonRoutes: Array<RouteObject> = [
   {
     path: '/',
-    element: <SubLayout />,
+    element: <Layout />,
     children: [
       {
         path: 'sign-out',
@@ -38,7 +36,7 @@ const commonRoutes: Array<RouteObject> = [
 const anonymousOnlyRoutes: Array<RouteObject> = [
   {
     path: '/',
-    element: <SubLayout />,
+    element: <Layout />,
     children: [
       {
         index: true,
@@ -54,7 +52,7 @@ const anonymousOnlyRoutes: Array<RouteObject> = [
 const authenticationOnlyRoutes: Array<RouteObject> = [
   {
     path: '/',
-    element: <MainLayout />,
+    element: <AuthUserLayout />,
     children: [
       {
         index: true,
@@ -70,11 +68,12 @@ const authenticationOnlyRoutes: Array<RouteObject> = [
 ]
 
 const AppRouter = () => {
-  const session = useSelector(selectAuthSession)
+  const session = useAuthSessionSubscription()
+
   const protectedRoutes = session ? authenticationOnlyRoutes : anonymousOnlyRoutes
   const element = useRoutes([...commonRoutes, ...protectedRoutes])
 
-  return <Suspense fallback={<PageLoadingSkeleton />}>{element}</Suspense>
+  return <>{element}</>
 }
 
 export default AppRouter

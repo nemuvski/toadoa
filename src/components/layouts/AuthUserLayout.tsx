@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { Button, ButtonIcon } from '~/components/styled/Button'
 import { Circle } from '~/components/styled/Circle'
+import { useCheckAccount } from '~/features/auth/hooks/account'
 
 const Header = styled.header(
   css`
@@ -24,7 +25,7 @@ const HeaderInner = styled.div(
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: calc(600px + 1rem);
+    max-width: calc(650px + 1rem);
     margin: 0 auto;
     padding: 0.75rem 0.5rem;
   `
@@ -33,14 +34,16 @@ const HeaderInner = styled.div(
 const Main = styled.main(
   css`
     width: 100%;
-    max-width: calc(520px + 2rem);
+    max-width: calc(600px + 1rem);
     margin: 8rem auto 5rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   `
 )
 
-const MainLayout = () => {
+const AuthUserLayout = () => {
   const navigate = useNavigate()
+
+  useCheckAccount()
 
   return (
     <>
@@ -62,4 +65,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default AuthUserLayout

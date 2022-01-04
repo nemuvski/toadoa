@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '~/stores/store'
-import { clearAccountState } from '~/features/auth/stores/account.slice'
-import useAuth from '~/features/auth/hooks/useAuth'
+import { useSignOut } from '~/features/auth/hooks/auth'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import { CenteringFrameHeading } from '~/components/styled/CenteringFrame'
 import { Paragraph } from '~/components/styled/Paragraph'
@@ -11,20 +8,14 @@ import { Card, CardBody } from '~/components/styled/Card'
 import { IconWrapper } from '~/components/styled/IconWrapper'
 
 const SignOutPage = () => {
-  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { signOut } = useAuth()
+  const signOutMutation = useSignOut()
 
   useEffect(() => {
-    const process = async () => {
-      await signOut()
-      // ストアをクリア
-      dispatch(clearAccountState())
-    }
-    process().finally(() => {
+    signOutMutation.mutateAsync().finally(() => {
       navigate('/', { replace: true })
     })
-  }, [dispatch, navigate, signOut])
+  }, [navigate, signOutMutation])
 
   return (
     <>

@@ -1,51 +1,22 @@
-import React, { useCallback, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import { BiPaperPlane } from 'react-icons/bi'
-import useAuth from '~/features/auth/hooks/useAuth'
+import { useSignIn } from '~/features/auth/hooks/auth'
+import { useLoginForm } from '~/features/auth/hooks/form'
 import useMessage from '~/features/message/hooks/useMessage'
-import { selectAuth } from '~/features/auth/stores/auth.selector'
 import Message from '~/features/message/components/Message'
 import LoadingIcon from '~/components/icons/LoadingIcon'
 import Either from '~/components/Either'
 import { Form, FormActions, FormTextInput } from '~/components/styled/Form'
 import { Button, ButtonIcon } from '~/components/styled/Button'
 
-type FormFields = {
-  email: string
-}
-
 const LoginForm = () => {
-  const { signIn } = useAuth()
-  const { message, addMessage, clearMessage } = useMessage()
-  const { error } = useSelector(selectAuth)
+  const signInMutation = useSignIn()
+  const { message, addMessage } = useMessage()
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isValid },
-  } = useForm<FormFields>({
-    mode: 'onChange',
-    reValidateMode: 'onChange',
-    defaultValues: {
-      email: '',
-    },
-  })
-
-  const handleButtonClick = useCallback(
-    async (formFields: FormFields) => {
-      await signIn(formFields.email)
-      addMessage('success', `Your magic link has been sent to ${formFields.email}`)
-    },
-    [signIn, addMessage]
-  )
-
-  useEffect(() => {
-    if (error) {
-      addMessage('error', error.message)
-    } else {
-      clearMessage()
-    }
-  }, [addMessage, clearMessage, error])
+  } = useLoginForm()
 
   return (
     <Form>
@@ -64,7 +35,11 @@ const LoginForm = () => {
       <FormActions>
         <Button
           disabled={isSubmitting || !isValid}
-          onClick={handleSubmit(handleButtonClick)}
+          onClick={handleSubmit(async (formFields) => {
+            // 押下時にマジックリンクのメールを送信する
+            await signInMutation.mutateAsync(formFields.email)
+            addMessage('success', `Your magic link has been sent to ${formFields.email}`)
+          })}
           color='primary'
           tabIndex={1}
         >
