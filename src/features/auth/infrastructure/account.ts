@@ -39,7 +39,7 @@ export async function createAccount(userUID: Alias.UserUID) {
     throw new RestError(error)
   }
   if (!data) {
-    return null
+    throw new Error('Failed to get the created Account entity')
   }
   return buildAccount(data)
 }

@@ -6,6 +6,7 @@ import { IoLogOutOutline } from 'react-icons/io5'
 import { Button, ButtonIcon } from '~/components/styled/Button'
 import { Circle } from '~/components/styled/Circle'
 import { useCheckAccount } from '~/features/auth/hooks/account'
+import PageSkeleton from '~/components/PageSkeleton'
 
 const Header = styled.header(
   css`
@@ -42,8 +43,11 @@ const Main = styled.main(
 
 const AuthUserLayout = () => {
   const navigate = useNavigate()
+  const isLoading = useCheckAccount()
 
-  useCheckAccount()
+  if (isLoading) {
+    return <PageSkeleton />
+  }
 
   return (
     <>

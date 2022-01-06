@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query'
 import { AccountStatus } from '~/features/auth/models/account'
 import { createAccount, getAccount } from '~/features/auth/infrastructure/account'
@@ -14,14 +14,15 @@ function useCreateAccount() {
 }
 
 export function useCheckAccount() {
-  const isProcessing = useRef(false)
+  const done = useRef(false)
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   const authUser = useAuthUser()
   const fetchAccountMutation = useFetchAccount()
   const createAccountMutation = useCreateAccount()
 
   useLayoutEffect(() => {
-    if (isProcessing.current) {
+    if (done.current) {
       return
     }
 
@@ -41,9 +42,12 @@ export function useCheckAccount() {
       }
     }
 
-    isProcessing.current = true
+    done.current = true
     process().finally(() => {
+      setIsLoading(false)
       console.debug('[Done] CheckAccount')
     })
   }, [navigate, authUser, fetchAccountMutation, createAccountMutation])
+
+  return isLoading
 }
