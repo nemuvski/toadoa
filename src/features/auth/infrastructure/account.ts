@@ -1,7 +1,9 @@
 import { supabase } from '~/libs/supabase'
 import { AccountStatus, buildAccount, DatabaseAccount } from '~/features/auth/models/account'
 import RestError from '~/exceptions/RestError'
-import dayjs from '~/libs/dayjs'
+import { getFormattedCurrentDate } from '~/utils/date'
+
+const accountQueryBuilder = supabase.from<DatabaseAccount>('account')
 
 /**
  * Accountを取得
@@ -9,7 +11,7 @@ import dayjs from '~/libs/dayjs'
  * @param userUID 取得するUserUID
  */
 export async function getAccount(userUID: Alias.UserUID) {
-  const { data, error } = await supabase.from<DatabaseAccount>('account').select().eq('id', userUID)
+  const { data, error } = await accountQueryBuilder.select().eq('id', userUID)
 
   if (error) {
     throw new RestError(error)
@@ -28,9 +30,8 @@ export async function getAccount(userUID: Alias.UserUID) {
  * @param userUID 作成するUserUID
  */
 export async function createAccount(userUID: Alias.UserUID) {
-  const currentDateString = dayjs().utc().format()
-  const { data, error } = await supabase
-    .from<DatabaseAccount>('account')
+  const currentDateString = getFormattedCurrentDate()
+  const { data, error } = await accountQueryBuilder
     .insert([{ id: userUID, status: AccountStatus.Active, createdAt: currentDateString, updatedAt: currentDateString }])
     .limit(1)
     .single()
