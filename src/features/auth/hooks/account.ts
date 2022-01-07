@@ -35,7 +35,7 @@ export function useCheckAccount() {
         navigate('/sign-out', { replace: true })
       }
 
-      // Accountがない場合は作成する
+      // Accountデータがない場合は作成する
       if (!account) {
         const createdAccount = await createAccountMutation.mutateAsync(authUser.id)
         console.debug('[Create] Account', createdAccount)
