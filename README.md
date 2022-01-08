@@ -2,7 +2,9 @@
 
 🚧 now under construction
 
-## Preparation
+## 👜 Preparation
+
+### Create dotenv file
 
 ```bash
 cp .env.example .env.development
@@ -11,7 +13,20 @@ cp .env.example .env.development
 vi .env.development
 ```
 
-## Database
+### Initialize DB on Supabase
+
+The following commands will help you set up the database.
+
+```bash
+yarn sequelize-cli db:migrate
+```
+
+See files under `sequelize/migrations` directory for details.
+
+
+## 💡 Tips
+
+### Database migrations with Sequelize
 
 This project uses Sequelize to migrate or manage the database (Postgres).
 
