@@ -6,7 +6,7 @@ import { buildEntityBase, DatabaseEntityBase, EntityBase } from '~/models/entity
  * Taskエンティティ
  */
 export interface Task extends EntityBase {
-  accountId: Alias.UserUID
+  uid: Alias.UserUID
   content: string
   status: TaskStatusType
   deadline: Dayjs | null
@@ -16,7 +16,7 @@ export interface Task extends EntityBase {
  * DB上のTaskエンティティ
  */
 export interface DatabaseTask extends DatabaseEntityBase {
-  accountId: Alias.UserUID
+  uid: Alias.UserUID
   content: string
   status: TaskStatusType
   deadline: Alias.DateString | null
@@ -38,10 +38,10 @@ export type TaskStatusType = typeof TaskStatus[keyof typeof TaskStatus]
  * @param response
  */
 export function buildTask(response: DatabaseTask): Task {
-  const { accountId, content, status, deadline } = response
+  const { uid, content, status, deadline } = response
   return {
     ...buildEntityBase(response),
-    accountId,
+    uid: uid,
     content,
     status,
     deadline: deadline ? dayjs(deadline) : null,

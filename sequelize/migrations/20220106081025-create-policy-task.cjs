@@ -12,7 +12,7 @@ module.exports = {
           CREATE POLICY "Users can view their own task." ON task
           FOR SELECT
           USING (
-            "accountId" = auth.uid()
+            uid = auth.uid()
           )
         `,
         { transaction }
@@ -23,7 +23,7 @@ module.exports = {
           CREATE POLICY "Users can insert their own task." ON task
           FOR INSERT
           WITH CHECK (
-            "accountId" = auth.uid()
+            uid = auth.uid()
           )
         `,
         { transaction }
@@ -34,10 +34,10 @@ module.exports = {
           CREATE POLICY "Users can update their own task." ON task
           FOR UPDATE
           USING (
-            "accountId" = auth.uid()
+            uid = auth.uid()
           )
           WITH CHECK (
-            "accountId" = auth.uid()
+            uid = auth.uid()
           )
         `,
         { transaction }
@@ -48,7 +48,7 @@ module.exports = {
           CREATE POLICY "Users can delete their own task." ON task
           FOR DELETE
           USING (
-            "accountId" = auth.uid()
+            uid = auth.uid()
           )
         `,
         { transaction }
