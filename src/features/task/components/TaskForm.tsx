@@ -31,6 +31,7 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
     <Form>
       <FormField>
         <FormTextInput
+          autoFocus
           maxLength={TASK_FIELD_CONTENT_MAX_LENGTH}
           {...register('content', { required: true, maxLength: TASK_FIELD_CONTENT_MAX_LENGTH })}
         />
