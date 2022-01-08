@@ -13,7 +13,7 @@ module.exports = {
           FOR SELECT
           USING (
             uid = auth.uid()
-          )
+          );
         `,
         { transaction }
       )
@@ -24,7 +24,7 @@ module.exports = {
           FOR INSERT
           WITH CHECK (
             uid = auth.uid()
-          )
+          );
         `,
         { transaction }
       )
@@ -38,7 +38,7 @@ module.exports = {
           )
           WITH CHECK (
             uid = auth.uid()
-          )
+          );
         `,
         { transaction }
       )
@@ -49,7 +49,7 @@ module.exports = {
           FOR DELETE
           USING (
             uid = auth.uid()
-          )
+          );
         `,
         { transaction }
       )
@@ -57,16 +57,16 @@ module.exports = {
   },
   down: async (queryInterface) => {
     await queryInterface.sequelize.transaction(async (transaction) => {
-      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can view their own task." ON task`, {
+      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can view their own task." ON task;`, {
         transaction,
       })
-      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can insert their own task." ON task`, {
+      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can insert their own task." ON task;`, {
         transaction,
       })
-      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can update their own task." ON task`, {
+      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can update their own task." ON task;`, {
         transaction,
       })
-      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can delete their own task." ON task`, {
+      await queryInterface.sequelize.query(`DROP POLICY IF EXISTS "Users can delete their own task." ON task;`, {
         transaction,
       })
 

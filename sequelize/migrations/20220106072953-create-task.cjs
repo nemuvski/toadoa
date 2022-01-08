@@ -29,15 +29,26 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('now()'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('now()'),
       },
     })
+
+    // updatedAtカラムに更新時にタイムスタンプを更新するトリガーを作成
+    await queryInterface.sequelize.query(`
+      CREATE TRIGGER trigger_timestamp_updated_at BEFORE UPDATE ON task FOR EACH ROW EXECUTE PROCEDURE set_timestamp_updated_at();
+    `)
   },
 
   down: async (queryInterface) => {
+    await queryInterface.sequelize.query(`
+      DROP TRIGGER IF EXISTS trigger_timestamp_updated_at ON task;
+    `)
+
     await queryInterface.dropTable('task')
   },
 }
