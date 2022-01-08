@@ -15,7 +15,7 @@ module.exports = {
       },
       content: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(200),
       },
       status: {
         type: Sequelize.ENUM(['ready', 'in-progress', 'done']),
