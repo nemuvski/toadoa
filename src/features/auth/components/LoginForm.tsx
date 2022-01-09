@@ -37,8 +37,17 @@ const LoginForm = () => {
           disabled={isSubmitting || !isValid}
           onClick={handleSubmit(async (formFields) => {
             // 押下時にマジックリンクのメールを送信する
-            await signInMutation.mutateAsync(formFields.email)
-            addMessage('success', `Your magic link has been sent to ${formFields.email}`)
+            await signInMutation.mutateAsync(formFields.email, {
+              onSuccess: () => {
+                addMessage('success', `Your magic link has been sent to ${formFields.email}`)
+              },
+              onError: (error) => {
+                if (error instanceof Error) {
+                  console.error(error)
+                  addMessage('error', error.message)
+                }
+              },
+            })
           })}
           color='primary'
           tabIndex={1}

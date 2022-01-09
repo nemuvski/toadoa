@@ -1,6 +1,12 @@
 import React from 'react'
+import { TASK_FIELD_CONTENT_MAX_LENGTH } from '~/features/task/constants'
 import { Task, TaskStatus } from '~/features/task/models/task'
 import { useTaskForm } from '~/features/task/hooks/form'
+import { useInsertTask } from '~/features/task/hooks/task'
+import useMessage from '~/features/message/hooks/useMessage'
+import Maybe from '~/components/Maybe'
+import Message from '~/features/message/components/Message'
+import LoadingIcon from '~/components/icons/LoadingIcon'
 import { Button, ButtonIcon } from '~/components/styled/Button'
 import {
   Form,
@@ -11,10 +17,6 @@ import {
   FormSelect,
   FormTextInput,
 } from '~/components/styled/Form'
-import { TASK_FIELD_CONTENT_MAX_LENGTH } from '~/features/task/constants'
-import { useInsertTask } from '~/features/task/hooks/task'
-import Maybe from '~/components/Maybe'
-import LoadingIcon from '~/components/icons/LoadingIcon'
 
 type Props = {
   task?: Task
@@ -23,6 +25,7 @@ type Props = {
 
 const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
   const insertTaskMutation = useInsertTask()
+  const { message, addMessage, clearMessage } = useMessage()
   const {
     register,
     reset,
@@ -33,6 +36,8 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
 
   return (
     <Form>
+      <Message content={message} />
+
       <FormField>
         <FormTextInput
           autoFocus
@@ -59,17 +64,37 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
       </FormField>
 
       <FormActions>
-        <Button onClick={() => reset()}>Reset</Button>
+        <Button
+          onClick={() => {
+            clearMessage()
+            reset()
+          }}
+        >
+          Reset
+        </Button>
         <Button
           disabled={isSubmitting || !isValid || !isDirty}
           onClick={handleSubmit(async (formFields) => {
             const { content, status, deadline } = formFields
-            await insertTaskMutation.mutateAsync({
-              content,
-              status,
-              deadline,
-            })
-            actionAfterSubmit && actionAfterSubmit()
+
+            await insertTaskMutation.mutateAsync(
+              {
+                content,
+                status,
+                deadline,
+              },
+              {
+                onSuccess: () => {
+                  actionAfterSubmit && actionAfterSubmit()
+                },
+                onError: (error) => {
+                  if (error instanceof Error) {
+                    console.error(error)
+                    addMessage('error', error.message)
+                  }
+                },
+              }
+            )
           })}
           color='primary'
         >
