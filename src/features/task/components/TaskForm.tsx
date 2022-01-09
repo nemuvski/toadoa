@@ -1,7 +1,7 @@
 import React from 'react'
 import { Task, TaskStatus } from '~/features/task/models/task'
 import { useTaskForm } from '~/features/task/hooks/form'
-import { Button } from '~/components/styled/Button'
+import { Button, ButtonIcon } from '~/components/styled/Button'
 import {
   Form,
   FormActions,
@@ -12,6 +12,9 @@ import {
   FormTextInput,
 } from '~/components/styled/Form'
 import { TASK_FIELD_CONTENT_MAX_LENGTH } from '~/features/task/constants'
+import { useInsertTask } from '~/features/task/hooks/task'
+import Maybe from '~/components/Maybe'
+import LoadingIcon from '~/components/icons/LoadingIcon'
 
 type Props = {
   task?: Task
@@ -19,6 +22,7 @@ type Props = {
 }
 
 const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
+  const insertTaskMutation = useInsertTask()
   const {
     register,
     reset,
@@ -58,13 +62,22 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
         <Button onClick={() => reset()}>Reset</Button>
         <Button
           disabled={isSubmitting || !isValid || !isDirty}
-          onClick={handleSubmit((formFields) => {
-            // TODO: 登録処理
-            console.debug(formFields)
+          onClick={handleSubmit(async (formFields) => {
+            const { content, status, deadline } = formFields
+            await insertTaskMutation.mutateAsync({
+              content,
+              status,
+              deadline,
+            })
             actionAfterSubmit && actionAfterSubmit()
           })}
           color='primary'
         >
+          <Maybe test={isSubmitting}>
+            <ButtonIcon>
+              <LoadingIcon />
+            </ButtonIcon>
+          </Maybe>
           Save
         </Button>
       </FormActions>

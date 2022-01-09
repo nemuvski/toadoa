@@ -28,7 +28,7 @@ export const buildEntityBase = (response: DatabaseEntityBase) => {
   const { id, createdAt, updatedAt } = response
   return {
     id,
-    createdAt: dayjs(createdAt),
-    updatedAt: dayjs(updatedAt),
+    createdAt: dayjs.utc(createdAt),
+    updatedAt: dayjs.utc(updatedAt),
   }
 }

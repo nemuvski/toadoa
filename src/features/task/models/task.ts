@@ -23,6 +23,15 @@ export interface DatabaseTask extends DatabaseEntityBase {
 }
 
 /**
+ * Formで扱うTaskのフィールドをまとめたオブジェクトのモデル
+ */
+export interface FormTask {
+  content: string
+  status: TaskStatusType
+  deadline: Alias.DateString | null
+}
+
+/**
  * Taskのステータスの内容
  */
 export const TaskStatus = {
@@ -44,6 +53,6 @@ export function buildTask(response: DatabaseTask): Task {
     uid: uid,
     content,
     status,
-    deadline: deadline ? dayjs(deadline) : null,
+    deadline: deadline ? dayjs.utc(deadline) : null,
   }
 }
