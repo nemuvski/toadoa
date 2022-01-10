@@ -13,7 +13,7 @@ const FrontPage = () => (
       <CardHeader>
         <h2>ToaDoa</h2>
         <p>
-          This application is a personal to-do list.
+          This application is a personal todo list.
           <br />
           Sign in and get started!
         </p>
