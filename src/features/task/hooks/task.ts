@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useAuthUser } from '~/features/auth/hooks/auth'
 import { getTasks, insertTask } from '~/features/task/infrastructure/task'
 import { FormTask, TaskStatusType } from '~/features/task/models/task'
@@ -9,5 +9,10 @@ export function useFetchTask(status: TaskStatusType) {
 
 export function useInsertTask() {
   const authUser = useAuthUser()
-  return useMutation('task/create', (formTask: FormTask) => insertTask(authUser.id, formTask))
+  const queryClient = useQueryClient()
+  return useMutation('task/create', (formTask: FormTask) => insertTask(authUser.id, formTask), {
+    onSuccess: (responseTask) => {
+      queryClient.invalidateQueries(['task/get', { type: responseTask.status }])
+    },
+  })
 }
