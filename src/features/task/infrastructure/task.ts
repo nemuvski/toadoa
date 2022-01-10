@@ -3,13 +3,16 @@ import RestError from '~/exceptions/RestError'
 import { getSavingDateString } from '~/utils/date'
 import { buildTask, DatabaseTask, FormTask, TaskStatusType } from '~/features/task/models/task'
 
-const taskQueryBuilder = supabase.from<DatabaseTask>('task')
-
 /**
  * Taskを取得
  */
-export async function getTasks(userUID: Alias.UserUID, status: TaskStatusType) {
-  const { data, error } = await taskQueryBuilder.select().eq('status', status).order('updatedAt', { ascending: false })
+export async function getTasks(status: TaskStatusType) {
+  const { data, error } = await supabase
+    .from<DatabaseTask>('task')
+    .select()
+    // uidについてはRLSで絞られるので、ここでのクエリ条件は省略できる
+    .eq('status', status)
+    .order('updatedAt', { ascending: false })
 
   if (error) {
     throw new RestError(error)
@@ -26,7 +29,8 @@ export async function getTasks(userUID: Alias.UserUID, status: TaskStatusType) {
 export async function insertTask(userUID: Alias.UserUID, formTask: FormTask) {
   const { content, status, deadline } = formTask
 
-  const { data, error } = await taskQueryBuilder
+  const { data, error } = await supabase
+    .from<DatabaseTask>('task')
     .insert([
       {
         uid: userUID,

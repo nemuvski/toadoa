@@ -4,8 +4,7 @@ import { getTasks, insertTask } from '~/features/task/infrastructure/task'
 import { FormTask, TaskStatusType } from '~/features/task/models/task'
 
 export function useFetchTask(status: TaskStatusType) {
-  const authUser = useAuthUser()
-  return useQuery(['task/get', status], () => getTasks(authUser.id, status))
+  return useQuery(['task/get', { type: status }], () => getTasks(status))
 }
 
 export function useInsertTask() {
