@@ -63,7 +63,7 @@ const Message: React.FC<Props> = ({ content }) => {
   if (!content) return null
 
   return (
-    <Root level={content.level}>
+    <Root level={content.level} role='alert'>
       <IconWrapper level={content.level}>
         <Maybe test={content.level === 'success'}>
           <IoCheckmarkCircleOutline />
