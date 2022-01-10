@@ -1,9 +1,24 @@
 import { supabase } from '~/libs/supabase'
 import RestError from '~/exceptions/RestError'
 import { getSavingDateString } from '~/utils/date'
-import { buildTask, DatabaseTask, FormTask } from '~/features/task/models/task'
+import { buildTask, DatabaseTask, FormTask, TaskStatusType } from '~/features/task/models/task'
 
 const taskQueryBuilder = supabase.from<DatabaseTask>('task')
+
+/**
+ * Taskを取得
+ */
+export async function getTasks(userUID: Alias.UserUID, status: TaskStatusType) {
+  const { data, error } = await taskQueryBuilder.select().eq('status', status).order('updatedAt', { ascending: false })
+
+  if (error) {
+    throw new RestError(error)
+  }
+  if (!data) {
+    throw new RestError('Failed to get Task entities')
+  }
+  return data.map((task) => buildTask(task))
+}
 
 /**
  * Taskを作成
