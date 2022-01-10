@@ -5,8 +5,9 @@ import styled from '@emotion/styled'
 import { TaskStatus, TaskStatusType } from '~/features/task/models/task'
 import TaskCreateForm from '~/features/task/components/TaskCreateForm'
 import TaskList from '~/features/task/components/TaskList'
-import { Button } from '~/components/styled/Button'
 import CardListSkeleton from '~/components/CardListSkeleton'
+import { Button } from '~/components/styled/Button'
+import { Paragraph } from '~/components/styled/Paragraph'
 
 const StatusSelector = styled.div(
   css`
@@ -54,7 +55,7 @@ const TaskDashboard = () => {
 
       <TaskCreateForm />
 
-      <ErrorBoundary fallback={<>Error</>}>
+      <ErrorBoundary fallback={<Paragraph alignment='center'>Oops, an error occurred.</Paragraph>}>
         <Suspense fallback={<CardListSkeleton />}>
           <TaskList status={viewStatus} />
         </Suspense>
