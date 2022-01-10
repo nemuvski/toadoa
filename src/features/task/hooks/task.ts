@@ -1,7 +1,12 @@
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { useAuthUser } from '~/features/auth/hooks/auth'
-import { insertTask } from '~/features/task/infrastructure/task'
-import { FormTask } from '~/features/task/models/task'
+import { getTasks, insertTask } from '~/features/task/infrastructure/task'
+import { FormTask, TaskStatusType } from '~/features/task/models/task'
+
+export function useFetchTask(status: TaskStatusType) {
+  const authUser = useAuthUser()
+  return useQuery(['task/get', status], () => getTasks(authUser.id, status))
+}
 
 export function useInsertTask() {
   const authUser = useAuthUser()

@@ -25,14 +25,20 @@ export const CardHeader = styled.div(
   `
 )
 
-export const CardContentSeparator = styled.hr`
+export const CardContentSeparator = styled.hr(css`
   margin: 0;
   border: 0;
   border-top: 1px solid var(--color-shadow);
-`
+`)
 
 export const CardBody = styled.div(
   css`
     padding: 1rem;
   `
 )
+
+export const CardList = styled.div(css`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`)

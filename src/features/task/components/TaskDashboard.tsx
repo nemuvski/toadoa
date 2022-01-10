@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { TaskStatus, TaskStatusType } from '~/features/task/models/task'
 import TaskCreateForm from '~/features/task/components/TaskCreateForm'
+import TaskList from '~/features/task/components/TaskList'
 import { Button } from '~/components/styled/Button'
-import { Paragraph } from '~/components/styled/Paragraph'
+import CardListSkeleton from '~/components/CardListSkeleton'
 
 const StatusSelector = styled.div(
   css`
@@ -52,7 +54,11 @@ const TaskDashboard = () => {
 
       <TaskCreateForm />
 
-      <Paragraph alignment='center'>No data</Paragraph>
+      <ErrorBoundary fallback={<>Error</>}>
+        <Suspense fallback={<CardListSkeleton />}>
+          <TaskList status={viewStatus} />
+        </Suspense>
+      </ErrorBoundary>
     </>
   )
 }
