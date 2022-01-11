@@ -1,6 +1,9 @@
-# ToaDoa
+# ToaDoa 🐸
 
-🚧 now under construction
+🚧 *NOW UNDER CONSTRUCTION*
+
+This repo contains **todo list application** built with React.js and [Supabase](https://supabase.com/) (BaaS).
+
 
 ## 👜 Preparation
 
@@ -22,6 +25,12 @@ yarn sequelize-cli db:migrate
 ```
 
 See files under `sequelize/migrations` directory for details.
+
+### Run on localhost
+
+1. `yarn start`
+2. http://locahost:3000/
+    - If port 3000 is already in use, another port will be allocated.
 
 
 ## 💡 Tips
