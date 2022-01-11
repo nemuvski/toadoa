@@ -1,6 +1,5 @@
 import { supabase } from '~/libs/supabase'
 import RestError from '~/exceptions/RestError'
-import { getSavingDateString } from '~/utils/date'
 import { buildTask, DatabaseTask, FormTask, TaskStatusType } from '~/features/task/models/task'
 
 /**
@@ -36,7 +35,7 @@ export async function insertTask(userUID: Alias.UserUID, formTask: FormTask) {
         uid: userUID,
         content,
         status,
-        deadline: getSavingDateString(deadline),
+        deadline: deadline || null,
       },
     ])
     .limit(1)
