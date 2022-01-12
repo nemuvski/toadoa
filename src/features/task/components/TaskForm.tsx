@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { TASK_FIELD_CONTENT_MAX_LENGTH } from '~/features/task/constants'
 import { Task, TaskStatus } from '~/features/task/models/task'
 import { useTaskForm } from '~/features/task/hooks/form'
-import { useInsertTask } from '~/features/task/hooks/task'
+import { useInsertTask, useUpdateTask } from '~/features/task/hooks/task'
 import useMessage from '~/features/message/hooks/useMessage'
 import Maybe from '~/components/Maybe'
 import Message from '~/features/message/components/Message'
@@ -25,6 +25,7 @@ type Props = {
 
 const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
   const insertTaskMutation = useInsertTask()
+  const updateTaskMutation = useUpdateTask(task?.status)
   const { message, addMessage, clearMessage } = useMessage()
   const {
     register,
@@ -33,6 +34,19 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
     watch,
     formState: { isSubmitting, isValid, isDirty },
   } = useTaskForm(task)
+
+  const handleSuccessOnSaveTask = useCallback(() => {
+    actionAfterSubmit && actionAfterSubmit()
+  }, [actionAfterSubmit])
+  const handleErrorOnSaveTask = useCallback(
+    (error) => {
+      if (error instanceof Error) {
+        console.error(error)
+        addMessage('error', error.message)
+      }
+    },
+    [addMessage]
+  )
 
   return (
     <Form>
@@ -77,24 +91,34 @@ const TaskForm: React.FC<Props> = ({ task, actionAfterSubmit }) => {
           onClick={handleSubmit(async (formFields) => {
             const { content, status, deadline } = formFields
 
-            await insertTaskMutation.mutateAsync(
-              {
-                content,
-                status,
-                deadline,
-              },
-              {
-                onSuccess: () => {
-                  actionAfterSubmit && actionAfterSubmit()
+            if (task) {
+              await updateTaskMutation.mutateAsync(
+                {
+                  preTask: task,
+                  formTask: {
+                    content,
+                    status,
+                    deadline,
+                  },
                 },
-                onError: (error) => {
-                  if (error instanceof Error) {
-                    console.error(error)
-                    addMessage('error', error.message)
-                  }
+                {
+                  onSuccess: () => handleSuccessOnSaveTask(),
+                  onError: (error) => handleErrorOnSaveTask(error),
+                }
+              )
+            } else {
+              await insertTaskMutation.mutateAsync(
+                {
+                  content,
+                  status,
+                  deadline,
                 },
-              }
-            )
+                {
+                  onSuccess: () => handleSuccessOnSaveTask(),
+                  onError: (error) => handleErrorOnSaveTask(error),
+                }
+              )
+            }
           })}
           color='primary'
         >

@@ -27,7 +27,7 @@ const TaskListItem: React.FC<Props> = ({ task }) => {
           match={
             <div onClick={(event) => event.stopPropagation()}>
               <CardHeaderCancelButton onClick={() => setIsEditMode(false)}>Cancel</CardHeaderCancelButton>
-              <TaskForm task={task} />
+              <TaskForm task={task} actionAfterSubmit={() => setIsEditMode(false)} />
             </div>
           }
           not={
