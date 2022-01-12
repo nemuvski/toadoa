@@ -5,7 +5,7 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import TaskForm from '~/features/task/components/TaskForm'
 import Either from '~/components/Either'
 import { ButtonIcon } from '~/components/styled/Button'
-import { Card, CardBody } from '~/components/styled/Card'
+import { Card, CardBody, CardHeaderCancelButton } from '~/components/styled/Card'
 
 const Root = styled.div(
   css`
@@ -25,17 +25,6 @@ const CreateButton = styled.button(
     line-height: 1;
   `
 )
-const CancelButton = styled.button(
-  css`
-    display: inline-block;
-    padding: 0.1rem;
-    color: var(--color-primary-main);
-
-    &:hover {
-      text-decoration: underline;
-    }
-  `
-)
 
 const TaskCreateForm = () => {
   const [formMode, setFormMode] = useState(false)
@@ -47,7 +36,7 @@ const TaskCreateForm = () => {
         match={
           <Card>
             <CardBody>
-              <CancelButton onClick={() => setFormMode(false)}>Cancel</CancelButton>
+              <CardHeaderCancelButton onClick={() => setFormMode(false)}>Cancel</CardHeaderCancelButton>
               <TaskForm actionAfterSubmit={() => setFormMode(false)} />
             </CardBody>
           </Card>

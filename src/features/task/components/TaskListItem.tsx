@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import Either from '~/components/Either'
 import { Task } from '~/features/task/models/task'
-import { Card, CardBody } from '~/components/styled/Card'
+import { Card, CardBody, CardHeaderCancelButton } from '~/components/styled/Card'
 import TaskFieldDeadline from '~/features/task/components/TaskFieldDeadline'
+import TaskForm from '~/features/task/components/TaskForm'
 
 const FieldContent = styled.div(css`
   word-break: break-all;
@@ -15,11 +17,26 @@ type Props = {
 }
 
 const TaskListItem: React.FC<Props> = ({ task }) => {
+  const [isEditMode, setIsEditMode] = useState(false)
+
   return (
-    <Card>
+    <Card clickable={!isEditMode} onClick={() => !isEditMode && setIsEditMode(true)}>
       <CardBody>
-        <TaskFieldDeadline deadline={task.deadline} />
-        <FieldContent>{task.content}</FieldContent>
+        <Either
+          test={isEditMode}
+          match={
+            <div onClick={(event) => event.stopPropagation()}>
+              <CardHeaderCancelButton onClick={() => setIsEditMode(false)}>Cancel</CardHeaderCancelButton>
+              <TaskForm task={task} />
+            </div>
+          }
+          not={
+            <>
+              <TaskFieldDeadline deadline={task.deadline} />
+              <FieldContent>{task.content}</FieldContent>
+            </>
+          }
+        />
       </CardBody>
     </Card>
   )

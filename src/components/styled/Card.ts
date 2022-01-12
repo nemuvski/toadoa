@@ -1,12 +1,39 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-export const Card = styled.div(
+type CardProps = {
+  clickable?: boolean
+}
+
+export const Card = styled.div<CardProps>(
   css`
     width: 100%;
     box-shadow: 0 0.4rem 0.6rem var(--color-shadow);
     background-color: var(--color-white);
     border-radius: var(--size-border-radius);
+  `,
+  ({ clickable = false }) => {
+    if (clickable) {
+      return css`
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 0 0.1rem 0.15rem var(--color-shadow);
+        }
+      `
+    }
+  }
+)
+
+export const CardHeaderCancelButton = styled.button(
+  css`
+    display: inline-block;
+    padding: 0.1rem;
+    color: var(--color-primary-main);
+
+    &:hover {
+      text-decoration: underline;
+    }
   `
 )
 
