@@ -1,8 +1,9 @@
-import React, { useState, Suspense } from 'react'
+import React, { Suspense, useContext } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { TaskStatus, TaskStatusType } from '~/features/task/models/task'
+import { SelectTaskStatusContext } from '~/features/task/Context/SelectTaskStatusProvider'
+import { TaskStatus } from '~/features/task/models/task'
 import TaskCreateForm from '~/features/task/components/TaskCreateForm'
 import TaskList from '~/features/task/components/TaskList'
 import CardListSkeleton from '~/components/CardListSkeleton'
@@ -25,29 +26,29 @@ const StatusSelector = styled.div(
 )
 
 const TaskDashboard = () => {
-  const [viewStatus, setViewStatus] = useState<TaskStatusType>(TaskStatus.Ready)
+  const { status, changeStatus } = useContext(SelectTaskStatusContext)
 
   return (
     <>
       <StatusSelector>
         <Button
-          onClick={() => setViewStatus(TaskStatus.Ready)}
-          color={TaskStatus.Ready === viewStatus ? 'primary' : undefined}
-          disabled={TaskStatus.Ready === viewStatus}
+          onClick={() => changeStatus(TaskStatus.Ready)}
+          color={TaskStatus.Ready === status ? 'primary' : undefined}
+          disabled={TaskStatus.Ready === status}
         >
           Ready
         </Button>
         <Button
-          onClick={() => setViewStatus(TaskStatus.InProgress)}
-          color={TaskStatus.InProgress === viewStatus ? 'primary' : undefined}
-          disabled={TaskStatus.InProgress === viewStatus}
+          onClick={() => changeStatus(TaskStatus.InProgress)}
+          color={TaskStatus.InProgress === status ? 'primary' : undefined}
+          disabled={TaskStatus.InProgress === status}
         >
           In progress
         </Button>
         <Button
-          onClick={() => setViewStatus(TaskStatus.Done)}
-          color={TaskStatus.Done === viewStatus ? 'primary' : undefined}
-          disabled={TaskStatus.Done === viewStatus}
+          onClick={() => changeStatus(TaskStatus.Done)}
+          color={TaskStatus.Done === status ? 'primary' : undefined}
+          disabled={TaskStatus.Done === status}
         >
           Done
         </Button>
@@ -57,7 +58,7 @@ const TaskDashboard = () => {
 
       <ErrorBoundary fallback={<Paragraph alignment='center'>Oops, an error occurred.</Paragraph>}>
         <Suspense fallback={<CardListSkeleton />}>
-          <TaskList status={viewStatus} />
+          <TaskList status={status} />
         </Suspense>
       </ErrorBoundary>
     </>
