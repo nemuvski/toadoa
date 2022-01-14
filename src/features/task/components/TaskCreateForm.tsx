@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { AiOutlinePlus } from 'react-icons/ai'
+import useEscKeydown from '~/hooks/useEscKeydown'
 import TaskForm from '~/features/task/components/TaskForm'
 import Either from '~/components/Either'
 import { ButtonIcon } from '~/components/styled/Button'
@@ -28,15 +29,19 @@ const CreateButton = styled.button(
 
 const TaskCreateForm = () => {
   const [formMode, setFormMode] = useState(false)
+  const elementRef = useRef(null)
+  useEscKeydown(elementRef, () => setFormMode(false))
 
   return (
     <Root>
       <Either
         test={formMode}
         match={
-          <Card>
+          <Card ref={elementRef}>
             <CardBody>
-              <CardHeaderCancelButton onClick={() => setFormMode(false)}>Cancel</CardHeaderCancelButton>
+              <CardHeaderCancelButton onClick={() => setFormMode(false)}>
+                Cancel [<kbd>ESC</kbd>]
+              </CardHeaderCancelButton>
               <TaskForm actionAfterSubmit={() => setFormMode(false)} />
             </CardBody>
           </Card>

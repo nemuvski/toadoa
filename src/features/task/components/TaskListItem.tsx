@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import useEscKeydown from '~/hooks/useEscKeydown'
 import Either from '~/components/Either'
 import { Task } from '~/features/task/models/task'
 import { Card, CardBody, CardHeaderCancelButton } from '~/components/styled/Card'
@@ -18,6 +19,8 @@ type Props = {
 
 const TaskListItem: React.FC<Props> = ({ task }) => {
   const [isEditMode, setIsEditMode] = useState(false)
+  const elementRef = useRef<HTMLDivElement | null>(null)
+  useEscKeydown(elementRef, () => setIsEditMode(false))
 
   return (
     <Card clickable={!isEditMode} onClick={() => !isEditMode && setIsEditMode(true)}>
@@ -25,8 +28,10 @@ const TaskListItem: React.FC<Props> = ({ task }) => {
         <Either
           test={isEditMode}
           match={
-            <div onClick={(event) => event.stopPropagation()}>
-              <CardHeaderCancelButton onClick={() => setIsEditMode(false)}>Cancel</CardHeaderCancelButton>
+            <div ref={elementRef} onClick={(event) => event.stopPropagation()}>
+              <CardHeaderCancelButton onClick={() => setIsEditMode(false)}>
+                Cancel [<kbd>ESC</kbd>]
+              </CardHeaderCancelButton>
               <TaskForm task={task} actionAfterSubmit={() => setIsEditMode(false)} />
             </div>
           }
