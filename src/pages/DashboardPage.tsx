@@ -1,7 +1,7 @@
 import React from 'react'
 import usePageTitle from '~/hooks/usePageTitle'
 import TaskDashboard from '~/features/task/components/TaskDashboard'
-import { SelectTaskStatusProvider } from '~/features/task/Context/SelectTaskStatusProvider'
+import { SelectTaskStatusProvider } from '~/features/task/context/SelectTaskStatusProvider'
 
 const DashboardPage = () => {
   usePageTitle('Dashboard')
