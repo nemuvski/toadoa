@@ -72,3 +72,11 @@ export async function updateTask(preTask: Task, formTask: FormTask) {
   }
   return buildTask(data)
 }
+
+export async function deleteTask(id: Alias.UUIDV4) {
+  const { error } = await supabase.from<DatabaseTask>('task').delete().match({ id })
+
+  if (error) {
+    throw new RestError(error)
+  }
+}

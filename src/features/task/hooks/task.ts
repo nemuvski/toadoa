@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useAuthUser } from '~/features/auth/hooks/auth'
-import { getTasks, insertTask, updateTask } from '~/features/task/infrastructure/task'
+import { deleteTask, getTasks, insertTask, updateTask } from '~/features/task/infrastructure/task'
 import { FormTask, Task, TaskStatusType } from '~/features/task/models/task'
 
 export function useFetchTask(status: TaskStatusType) {
@@ -33,4 +33,15 @@ export function useUpdateTask(preTaskStatus?: TaskStatusType) {
       },
     }
   )
+}
+
+export function useDeleteTask(taskStatus?: TaskStatusType) {
+  const queryClient = useQueryClient()
+  return useMutation('task/delete', (id: Alias.UUIDV4) => deleteTask(id), {
+    onSuccess: () => {
+      if (taskStatus) {
+        queryClient.invalidateQueries(['task/get', { type: taskStatus }])
+      }
+    },
+  })
 }
