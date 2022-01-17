@@ -1,11 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-type ButtonProps = {
-  color?: 'primary' | 'secondary'
-}
-
-export const Button = styled.button<ButtonProps>(
+export const Button = styled.button<{ color?: 'primary' | 'secondary' }>(
   css`
     display: inline-flex;
     justify-content: center;
@@ -30,9 +26,7 @@ export const Button = styled.button<ButtonProps>(
     `
   }
 )
-Button.defaultProps = {
-  type: 'button',
-}
+Button.defaultProps = { type: 'button' }
 
 export const ButtonIcon = styled.i(
   css`

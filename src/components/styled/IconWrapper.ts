@@ -1,11 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-type IconWrapperProps = {
-  size?: 'small' | 'medium' | 'large'
-}
-
-export const IconWrapper = styled.i<IconWrapperProps>(
+export const IconWrapper = styled.i<{ size?: 'small' | 'medium' | 'large' }>(
   css`
     display: inline-block;
 

@@ -1,11 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-type CircleProps = {
-  size?: 'large' | 'medium'
-}
-
-export const Circle = styled.div<CircleProps>(
+export const Circle = styled.div<{ size?: 'large' | 'medium' }>(
   css`
     display: inline-flex;
     justify-content: center;

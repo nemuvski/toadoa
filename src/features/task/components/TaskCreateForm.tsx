@@ -6,7 +6,7 @@ import useEscKeydown from '~/hooks/useEscKeydown'
 import TaskForm from '~/features/task/components/TaskForm'
 import Either from '~/components/Either'
 import { ButtonIcon } from '~/components/styled/Button'
-import { Card, CardBody, CardHeaderCancelButton } from '~/components/styled/Card'
+import { Card, CardBody, CardHeaderAction, CardHeaderActionButton } from '~/components/styled/Card'
 
 const Root = styled.div(
   css`
@@ -39,9 +39,11 @@ const TaskCreateForm = () => {
         match={
           <Card ref={elementRef}>
             <CardBody>
-              <CardHeaderCancelButton onClick={() => setFormMode(false)}>
-                Cancel [<kbd>ESC</kbd>]
-              </CardHeaderCancelButton>
+              <CardHeaderAction>
+                <CardHeaderActionButton onClick={() => setFormMode(false)}>
+                  Cancel [<kbd>ESC</kbd>]
+                </CardHeaderActionButton>
+              </CardHeaderAction>
               <TaskForm actionAfterSubmit={() => setFormMode(false)} />
             </CardBody>
           </Card>
