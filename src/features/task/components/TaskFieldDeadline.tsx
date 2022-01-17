@@ -26,15 +26,15 @@ const Content = styled.div<{ date: Dayjs }>(
     const currentDate = dayjs()
     const diff = getDiffDay(date, currentDate)
 
-    let bgColor = '--color-info-main'
-    let textColor = '--color-info-light'
+    let bgColor = '--color-info-light'
+    let textColor = '--color-info-main'
 
     if (diff < 0) {
-      bgColor = '--color-error-main'
-      textColor = '--color-error-light'
+      bgColor = '--color-error-light'
+      textColor = '--color-error-main'
     } else if (diff <= 3) {
-      bgColor = '--color-warning-main'
-      textColor = '--color-warning-light'
+      bgColor = '--color-warning-light'
+      textColor = '--color-warning-main'
     }
 
     return css`
