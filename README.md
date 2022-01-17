@@ -1,7 +1,5 @@
 # ToaDoa 🐸
 
-🚧 *NOW UNDER CONSTRUCTION*
-
 This repo contains **todo list application** built with React.js and [Supabase](https://supabase.com/) (BaaS).
 
 
@@ -50,3 +48,10 @@ NODE_ENV=production yarn sequelize-cli {some-command}
 ## Loading .env.development file (default: development)
 yarn sequelize-cli {some-command}
 ```
+
+
+## 📸 Screenshots
+
+| Login Form        | Todo List         |
+|-------------------|-------------------|
+| ![](capture1.png) | ![](capture2.png) |
