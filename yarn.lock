@@ -564,10 +564,10 @@
   dependencies:
     cross-fetch "^3.1.0"
 
-"@supabase/supabase-js@^1.29.2":
-  version "1.29.2"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.29.2.tgz#04e3ddfcb676a4f1f1f972255c7aff276bc8fffd"
-  integrity sha512-zyURfsWxGeuVQd4QfqeSyzhpplYIQznL92mATcb8uUjnoXRC+oDiVQ3Ak5mtFJlPPT1tRwEWTr5o9fr0AncOcg==
+"@supabase/supabase-js@^1.29.3":
+  version "1.29.3"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.29.3.tgz#8b50dd5c09c4f87345ad1f47960450e22b5461c5"
+  integrity sha512-HHdyPSTWoI3b5IAp6XuM9w+R+RFOifSZC/hMqDNgdy8Aywl9JZda9pqP7X+sunyQQRoQCLxXTeokzRFg0CvSOQ==
   dependencies:
     "@supabase/gotrue-js" "^1.21.7"
     "@supabase/postgrest-js" "^0.35.0"
@@ -2722,10 +2722,10 @@ react-error-boundary@^3.1.4:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-react-hook-form@^7.24.1:
-  version "7.24.1"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.24.1.tgz#00e80ca20fe3bb3b86d236d74ed1a4e5f6525228"
-  integrity sha512-UndVzKetChAsO+qkRo/6vOgaeTP60x324mHQ4iXVgHDvFjd+X/caWW0/QuAqipt8Bs7pyKH8147UQCrPTYFc2g==
+react-hook-form@^7.25.0:
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.25.0.tgz#ffba58e5e14c8eeb81e2c43b741667552f11ae29"
+  integrity sha512-MyF4YXegIT/vfyZloTm98mpJwLUPfULdX37yPzXeijT1hePCkV8DN1IAnEufxgtqCpc7aFGRinegQwisUGZCnA==
 
 react-icons@^4.3.1:
   version "4.3.1"
@@ -2737,10 +2737,10 @@ react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-query@^3.34.8:
-  version "3.34.8"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.8.tgz#a3be8523fd95f766b04c32847a1b58d8231db03c"
-  integrity sha512-pl9e2VmVbgKf29Qn/WpmFVtB2g17JPqLLyOQg3GfSs/S2WABvip5xlT464vfXtilLPcJVg9bEHHlqmC38/nvDw==
+react-query@^3.34.11:
+  version "3.34.11"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.11.tgz#314983ce13fef087d933cf1079aa2df93cb8f97c"
+  integrity sha512-vRC9J8dklE6rQ1uQHveNgoXOH4ceOn6Ww2+XUYOrEsUaSBZ76aQ/VTzDanXJn+E78lFQn0ajdSomduXP55iCwg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"
@@ -2933,10 +2933,10 @@ sequelize-pool@^7.1.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-7.1.0.tgz#210b391af4002762f823188fd6ecfc7413020768"
   integrity sha512-G9c0qlIWQSK29pR/5U2JF5dDQeqqHRragoyahj/Nx4KOOQ3CPPfzxnfqFPCSB7x5UgjOgnZ61nSxz+fjDpRlJg==
 
-sequelize@^6.13.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.13.0.tgz#ce042fc511313094c1e4ca2b2ee13a563359e7b6"
-  integrity sha512-p0dXXGZSc0Ng7CdGwlKN4P6DTRD/w9Ar2CnmHamNVDnqEWh6pMVOp3xrlG5+IWhbwrqL3SjIYEYt3Xog1vXRDw==
+sequelize@^6.14.0:
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.14.0.tgz#aeec994fb4f789a2180aa58c722d23b65116a96c"
+  integrity sha512-rgfJFixBwnrxdouIlYS1G0nTo2xj+Gyn7EDn/miE6r5xCzN3EdjtbNrDXapLHNZxgKfu7hZHLzZvwl3DbfhM6g==
   dependencies:
     "@types/debug" "^4.1.7"
     debug "^4.3.3"
@@ -3212,10 +3212,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
-  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
+typescript@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
+  integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
 
 umzug@^2.3.0:
   version "2.3.0"
